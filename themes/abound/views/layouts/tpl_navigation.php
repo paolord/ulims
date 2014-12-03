@@ -39,8 +39,8 @@
 						//array('label'=>'Initialize Lab Counters', 'url'=>array('initializecode/admin'), 'visible'=>(!Yii::app()->user->isGuest && (Yii::app()->getModule('lab')->isLabAdmin() == 1)) ? true : false),
 						array('label'=>'Laboratories', 'url'=>array('lab/admin'), 'visible'=>(!Yii::app()->user->isGuest && (Yii::app()->getModule('lab')->isLabAdmin() == 1)) ? true : false),
 						//array('label'=>'Signatories', 'url'=>array('default/index'), 'visible'=>(!Yii::app()->user->isGuest && (Yii::app()->getModule('lab')->isLabAdmin() == 1)) ? true : false),
-						array('label'=>'Test Categories', 'url'=>array('testcategory/admin'), 'visible'=>(!Yii::app()->user->isGuest && (Yii::app()->getModule('lab')->isLabAdmin() == 1)) ? true : false),
-						array('label'=>'Sample Types', 'url'=>array('sampletype/admin'), 'visible'=>(!Yii::app()->user->isGuest && (Yii::app()->getModule('lab')->isLabAdmin() == 1)) ? true : false),
+						array('label'=>'Test Categories', 'url'=>array(($_SERVER["REQUEST_URI"]=="/ulims/"?"lab/":"").'testcategory/admin'), 'visible'=>(!Yii::app()->user->isGuest && (Yii::app()->getModule('lab')->isLabAdmin() == 1)) ? true : false),
+						array('label'=>'Sample Types', 'url'=>array(($_SERVER["REQUEST_URI"]=="/ulims/"?"lab/":"").'sampletype/admin'), 'visible'=>(!Yii::app()->user->isGuest && (Yii::app()->getModule('lab')->isLabAdmin() == 1)) ? true : false),
 						
 						array('label'=>'Set New OR Series', 'url'=>array('default/index'), 'visible'=>(!Yii::app()->user->isGuest && (Yii::app()->getModule('cashier')->isCashierAdmin() == 1)) ? true : false),
 						array('label' => '<hr>', 'visible'=>(!Yii::app()->user->isGuest && (Yii::app()->getModule('lab')->isLabAdmin() == 1)) ? true : false, array('itemOptions'=>array('class'=>'divider'))),
