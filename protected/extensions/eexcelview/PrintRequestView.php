@@ -435,12 +435,22 @@ Yii::import('zii.widgets.grid.CGridView');
 			self::$activeSheet->SetCellValue('J36', 'Discount');
 			
 			self::$activeSheet->SetCellValue('K50', $this->request->total);
+		$rec = ""; $da = "";
+			foreach($this->request->receipts as $collection){
+				$rec .= $collection->receiptid.'-'.$collection->amount." ";
+				$da .= $collection->receipt->receiptDate.'  ';
+			}
 	
-			self::$activeSheet->SetCellValue('A52', 'OR NO.:');
-			self::$activeSheet->SetCellValue('A53', 'DATE:');
+			self::$activeSheet->SetCellValue('A52', 'OR NO.:');			self::$activeSheet->SetCellValue('B52', $rec);
+			self::$activeSheet->SetCellValue('A53', 'DATE:');			self::$activeSheet->SetCellValue('B53', $da);
 			
-			self::$activeSheet->SetCellValue('G52', 'AMOUNT RECEIVED:');
-			self::$activeSheet->SetCellValue('G53', 'UNPAID BALANCE:');
+			self::$activeSheet->getStyle('I52')->getNumberFormat()->setFormatCode('#,##0.00');
+			self::$activeSheet->getStyle('I53')->getNumberFormat()->setFormatCode('#,##0.00');
+			self::$activeSheet->SetCellValue('I52', $this->request->collection);
+			self::$activeSheet->SetCellValue('I53', $this->request->total - $this->request->collection);
+			
+			self::$activeSheet->SetCellValue('G52', 'AMOUNT RECEIVED:');	
+			self::$activeSheet->SetCellValue('G53', 'UNPAID BALANCE:');			
 			
 			self::$activeSheet->SetCellValue('A55', 'REPORT DUE ON:');
 			self::$activeSheet->SetCellValue('C55', date("M. j, Y", strtotime($this->request->reportDue)).' (4:00 PM)');
